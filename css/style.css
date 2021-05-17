@@ -32,14 +32,24 @@
     margin-left: 20px;
     font-size: 30px;
   }
+  
   button{
 margin-top: 20px;  
 margin-left: -250px; 
 padding: 10px;
 background-color: black;
 color: white; }
+
 input{
     background-color: black;
     color: white;
     font-weight: bolder;
+}
+ul {
+    margin-top: 15px;
+
+}
+li{
+    margin-top: 5px;
+
 }

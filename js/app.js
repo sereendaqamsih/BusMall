@@ -66,8 +66,15 @@ function handelClicks(event){
 
     }
 else {
-    result();
-    let ulEl = document.getElementById('results');
+    let button=document.getElementById('butt');
+
+    button.addEventListener("click", result);
+
+   
+}
+function result()
+{
+    let ulEl = document.getElementById('result');
     let liEl;
     for (let i = 0; i < product.length; i++) {
         liEl = document.createElement('li');
