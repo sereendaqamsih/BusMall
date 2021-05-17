@@ -10,14 +10,12 @@ let rightImgIndex;
 let lImgEl = document.getElementById('leftImg');
 let mImgEl = document.getElementById('midImg');
 let rImgEl = document.getElementById('rightImg');
-//let imagename= [];
 function productImage(productName){
     this.productName = productName .split('.')[0];
     this.source = 'img/' + productName;
     this.clicks = 0;
     this.views = 0;
     product.push(this);
-  //  imagename.push(this.productName);
 }
 for (let i = 0; i< productimagestag.length; i++) {
     new productImage(productimagestag[i]);
@@ -50,8 +48,8 @@ function renderImg() {
     product[rightImgIndex].views++;
     attemptsEl.textContent = attempts;
 }
-
 renderImg();
+
 lImgEl.addEventListener("click", handelClicks);
 mImgEl.addEventListener("click", handelClicks);
 rImgEl.addEventListener("click", handelClicks);
@@ -69,9 +67,8 @@ else {
     let button=document.getElementById('butt');
 
     button.addEventListener("click", result);
-
    
-}
+}}
 function result()
 {
     let ulEl = document.getElementById('result');
@@ -86,7 +83,10 @@ function result()
     mImgEl.removeEventListener("click", handelClicks);
     rImgEl.removeEventListener("click", handelClicks);
 }
-}
+
+
+
+
 
 
 
@@ -150,4 +150,5 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-}*/
+}
+chartRender ();*/
