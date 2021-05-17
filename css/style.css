@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+  }
+  h1 {
+    text-align: center;
+  }
+  img {
+    display: block;
+    width: 150px;
+    float: left;
+    height: 150px;
+    border: 2px solid lightblue;
+  }
+  #image-container {
+    padding-left:200px;
+    border: 2px solid black;
+    width: 800px;
+    margin: 0 auto;
+    height: 175px;
+  }
+  #leftImg,
+  #rightImg,
+  #midImg {
+    float: left;
+  margin-bottom: 100px;
+  border-radius: 15px;
+  }
+  span {
+    margin-left: 50px;
+  }
+  #attempts {
+    margin-left: 20px;
+    font-size: 30px;
+  }
+  button{
+margin-top: 20px;  
+margin-left: -250px; 
+padding: 10px;
+background-color: black;
+color: white; }
+input{
+    background-color: black;
+    color: white;
+    font-weight: bolder;
+}
