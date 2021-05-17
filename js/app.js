@@ -7,6 +7,10 @@ let productimagestag = ['bag.jpg','banana.jpg','bathroom.jpg','boots.jpg','break
 let leftImgIndex;
 let midImgIndex;
 let rightImgIndex;
+let productClicks = [];
+let productViews = [];
+let productImagesNames = [];
+
 let lImgEl = document.getElementById('leftImg');
 let mImgEl = document.getElementById('midImg');
 let rImgEl = document.getElementById('rightImg');
@@ -16,6 +20,7 @@ function productImage(productName){
     this.clicks = 0;
     this.views = 0;
     product.push(this);
+    productImagesNames.push(this.productName);
 }
 for (let i = 0; i< productimagestag.length; i++) {
     new productImage(productimagestag[i]);
@@ -77,71 +82,49 @@ function result()
         liEl = document.createElement('li');
         ulEl.appendChild(liEl);
         liEl.textContent = `${product[i].productName} has ${product[i].views} views and has ${product[i].clicks} clicks.`
+        productClicks.push(product[i].clicks);
+       productViews.push(product[i].views);
     }
+
 
     lImgEl.removeEventListener("click", handelClicks);
     mImgEl.removeEventListener("click", handelClicks);
     rImgEl.removeEventListener("click", handelClicks);
+    chartRender ();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function chartRender (){
+function chartRender (){
     var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels:productImagesNames,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+            label: '# of Clicks',
+            data: productClicks,
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',      
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
+                
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
+        },
+    
+        {
+            label: '# of Views',
+            data: productViews,
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.2)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 3
         }]
     },
+    
+    
     options: {
         scales: {
             y: {
@@ -151,4 +134,3 @@ var myChart = new Chart(ctx, {
     }
 });
 }
-chartRender ();*/
