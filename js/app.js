@@ -48,14 +48,20 @@ for (let i = 0; i< productimagestag.length; i++) {
 function generateImage() {
     return Math.floor(Math.random() * product.length);
 }
+let image1;
+let image2;
+let image3;
+let imageCollection=[];
 
 function renderImg() {
     leftImgIndex = generateImage();
     midImgIndex = generateImage();
     rightImgIndex = generateImage();
-    while (leftImgIndex === midImgIndex || leftImgIndex === rightImgIndex || midImgIndex === rightImgIndex){
+    while (leftImgIndex === midImgIndex || leftImgIndex === rightImgIndex || midImgIndex === rightImgIndex || image1===leftImgIndex || image1 === midImgIndex ||image1 === rightImgIndex ||  image2===leftImgIndex || image2 === midImgIndex ||image2=== rightImgIndex|| image3===leftImgIndex || image3 === midImgIndex ||image3 === rightImgIndex){
     leftImgIndex = generateImage();
     midImgIndex = generateImage();
+    rightImgIndex = generateImage();
+
     }
           
     lImgEl.setAttribute('src', product[leftImgIndex].source);
@@ -70,6 +76,14 @@ function renderImg() {
     rImgEl.setAttribute('title', product[rightImgIndex].source);
     product[rightImgIndex].views++;
     attemptsEl.textContent = attempts;
+
+    imageCollection[0]=leftImgIndex;
+    image1=imageCollection[0];
+    imageCollection[1]=midImgIndex;
+    image2=imageCollection[1];
+    imageCollection[2]=rightImgIndex;
+    image3=imageCollection[2];
+
 }
 renderImg();
 
