@@ -22,6 +22,24 @@ function productImage(productName){
     product.push(this);
     productImagesNames.push(this.productName);
 }
+
+function settingItems() {
+    let data = JSON.stringify(product);
+    console.log(data);
+    localStorage.setItem('BusMall', data);
+    let views2 = JSON.stringify(productViews);
+    localStorage.setItem('Views',views2);
+}
+
+function gettingItems() {
+    let stringObj = localStorage.getItem('productImage');
+    let normalObj = JSON.parse(stringObj);
+    if (normalObj !== null) {product = normalObj;}
+    let views3 = localStorage.getItem('views');
+    let views4=JSON.parse(views3);
+    if (views4 !== null) {productViews = views4;}
+}
+    
 for (let i = 0; i< productimagestag.length; i++) {
     new productImage(productimagestag[i]);
 
@@ -74,8 +92,8 @@ else {
     button.addEventListener("click", result);
    
 }}
-function result()
-{
+
+function result() {
     let ulEl = document.getElementById('result');
     let liEl;
     for (let i = 0; i < product.length; i++) {
@@ -86,6 +104,7 @@ function result()
        productViews.push(product[i].views);
     }
 
+    settingItems();
 
     lImgEl.removeEventListener("click", handelClicks);
     mImgEl.removeEventListener("click", handelClicks);
@@ -134,3 +153,5 @@ var myChart = new Chart(ctx, {
     }
 });
 }
+
+gettingItems();
