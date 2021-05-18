@@ -10,7 +10,6 @@ let rightImgIndex;
 let productClicks = [];
 let productViews = [];
 let productImagesNames = [];
-
 let lImgEl = document.getElementById('leftImg');
 let mImgEl = document.getElementById('midImg');
 let rImgEl = document.getElementById('rightImg');
