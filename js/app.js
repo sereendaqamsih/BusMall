@@ -9,6 +9,8 @@ let midImgIndex;
 let rightImgIndex;
 let productClicks = [];
 let productViews = [];
+let viewSumarr=[];
+let clickSumarr=[];
 let productImagesNames = [];
 let lImgEl = document.getElementById('leftImg');
 let mImgEl = document.getElementById('midImg');
@@ -26,8 +28,10 @@ function settingItems() {
     let data = JSON.stringify(product);
     console.log(data);
     localStorage.setItem('BusMall', data);
-    let views2 = JSON.stringify(productViews);
+    let views2 = JSON.stringify(viewSumarr);
     localStorage.setItem('Views',views2);
+    let clicks2 = JSON.stringify(clickSumarr);
+    localStorage.setItem('Clicks',clicks2);
 }
 
 function gettingItems() {
@@ -36,7 +40,7 @@ function gettingItems() {
     if (normalObj !== null) {product = normalObj;}
     let views3 = localStorage.getItem('views');
     let views4=JSON.parse(views3);
-    if (views4 !== null) {productViews = views4;}
+    if (views4 !== null) {viewSumarr = views4;}
 }
     
 for (let i = 0; i< productimagestag.length; i++) {
@@ -91,6 +95,7 @@ mImgEl.addEventListener("click", handelClicks);
 rImgEl.addEventListener("click", handelClicks);
 
 function handelClicks(event){
+
     attempts++;
     if (attempts <= maxAttempts){
          if (event.target.id === "leftImg"){product[leftImgIndex].clicks++;  }
@@ -105,7 +110,10 @@ else {
     button.addEventListener("click", result);
    
 }}
-
+let viewsum;
+let clicksum;
+let totalviews=0;
+let totalclicks=0;
 function result() {
     let ulEl = document.getElementById('result');
     let liEl;
@@ -114,9 +122,17 @@ function result() {
         ulEl.appendChild(liEl);
         liEl.textContent = `${product[i].productName} has ${product[i].views} views and has ${product[i].clicks} clicks.`
         productClicks.push(product[i].clicks);
-       productViews.push(product[i].views);
+        productViews.push(product[i].views);
     }
+    viewsum=productViews;
+    clicksum=productClicks;
+for (let i=0; i<product.length;i++){
+totalclicks=productClicks[i]+clicksum[i];
+clickSumarr.push(totalclicks);
+totalviews=productViews[i]+viewsum[i];
+viewSumarr.push(totalviews);
 
+}
     settingItems();
 
     lImgEl.removeEventListener("click", handelClicks);
