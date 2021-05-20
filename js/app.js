@@ -15,6 +15,16 @@ let productImagesNames = [];
 let lImgEl = document.getElementById('leftImg');
 let mImgEl = document.getElementById('midImg');
 let rImgEl = document.getElementById('rightImg');
+let viewsum = [];
+let clicksum=[];
+/*
+for (let i=0;i<productimagestag.length;i++){
+    viewsum[i]=0;
+    clicksum[i]=0;
+}*/
+let totalviews=0;
+let totalclicks=0;
+
 function productImage(productName){
     this.productName = productName .split('.')[0];
     this.source = 'img/' + productName;
@@ -22,25 +32,39 @@ function productImage(productName){
     this.views = 0;
     product.push(this);
     productImagesNames.push(this.productName);
+
 }
 
 function settingItems() {
     let data = JSON.stringify(product);
     console.log(data);
     localStorage.setItem('BusMall', data);
+    //let views2 = JSON.stringify(productViews);
     let views2 = JSON.stringify(viewSumarr);
+
+    console.log(views2);
     localStorage.setItem('Views',views2);
+    //let clicks2 = JSON.stringify(productClicks);
     let clicks2 = JSON.stringify(clickSumarr);
+
     localStorage.setItem('Clicks',clicks2);
+
 }
 
 function gettingItems() {
     let stringObj = localStorage.getItem('productImage');
     let normalObj = JSON.parse(stringObj);
     if (normalObj !== null) {product = normalObj;}
-    let views3 = localStorage.getItem('views');
+
+    let views3 = localStorage.getItem('viewSumarr');
     let views4=JSON.parse(views3);
     if (views4 !== null) {viewSumarr = views4;}
+    if (normalObj !== null) {product = normalObj;}
+    let clicks3 = localStorage.getItem('clicks');
+    let clicks4=JSON.parse(clicks3);
+    if (clicks4 !== null) {clickSumarr = clicks4;}
+
+
 }
     
 for (let i = 0; i< productimagestag.length; i++) {
@@ -109,36 +133,40 @@ else {
 
     button.addEventListener("click", result);
    
-}}
-let viewsum;
-let clicksum;
-let totalviews=0;
-let totalclicks=0;
+}
+
+}
 function result() {
     let ulEl = document.getElementById('result');
     let liEl;
+    
     for (let i = 0; i < product.length; i++) {
         liEl = document.createElement('li');
         ulEl.appendChild(liEl);
         liEl.textContent = `${product[i].productName} has ${product[i].views} views and has ${product[i].clicks} clicks.`
         productClicks.push(product[i].clicks);
         productViews.push(product[i].views);
+        
     }
+    localsave ();
+
     viewsum=productViews;
     clicksum=productClicks;
-for (let i=0; i<product.length;i++){
-totalclicks=productClicks[i]+clicksum[i];
-clickSumarr.push(totalclicks);
-totalviews=productViews[i]+viewsum[i];
-viewSumarr.push(totalviews);
-
-}
     settingItems();
-
     lImgEl.removeEventListener("click", handelClicks);
     mImgEl.removeEventListener("click", handelClicks);
     rImgEl.removeEventListener("click", handelClicks);
     chartRender ();
+    
+}
+
+function localsave (){
+    for (let i=0; i<product.length;i++) {
+    totalclicks=productClicks[i]+viewsum[i] ;
+    clickSumarr.push(totalclicks);
+    totalviews=productViews[i]+clicksum[i];
+    viewSumarr.push(totalviews);   
+}
 }
 
 function chartRender (){
